@@ -4,7 +4,7 @@ library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.std_logic_unsigned.all;
 
-entity ffd is
+entity v_ffd is
     port(
         clk_i: in std_logic;
         rst_i: in std_logic;
@@ -14,7 +14,7 @@ entity ffd is
     );
 end;
 
-architecture ffd_arq of ffd is
+architecture v_ffd_arq of v_ffd is
     begin
         process(clk_i, rst_i) 
             begin

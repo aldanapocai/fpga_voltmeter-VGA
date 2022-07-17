@@ -19,7 +19,7 @@ architecture reg_gral_arq of reg_gral is
 
 begin
     registro: for i in 0 to N-1 generate
-        ffds: entity work.ffd
+        ffds: entity work.v_ffd
             port map(
                 clk_i => clk_i,
                 rst_i => rst_i,
