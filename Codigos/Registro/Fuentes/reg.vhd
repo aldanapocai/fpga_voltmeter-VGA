@@ -1,6 +1,6 @@
 library IEEE;
 use IEEE.std_logic_1164.all;
-use work.matrix_type.all;
+use work.utils.all;
 
 entity reg is 
     generic(
@@ -10,7 +10,7 @@ entity reg is
         clk_i: in std_logic;
         rst_i: in std_logic;
         ena_i: in std_logic;
-        D_i: in matrix;
+        D_i: in matrix(2 downto 0);
         q_1: out std_logic_vector(N-1 downto 0);
         q_2: out std_logic_vector(N-1 downto 0);
         q_3: out std_logic_vector(N-1 downto 0);
@@ -36,7 +36,7 @@ architecture reg_arq of reg is
 
     constant dot_aux: std_logic_vector(0 to N-1) := ('1','0','1','1');
     constant v_aux: std_logic_vector(0 to N-1) := ('1','0','1','0');
-    signal Q_reg_aux: matrix;
+    signal Q_reg_aux: matrix(2 downto 0);
 
 begin
 

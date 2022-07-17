@@ -1,6 +1,6 @@
 library IEEE;
 use IEEE.std_logic_1164.all;
-use work.matrix_type.all;
+use work.utils.all;
 
 entity reg_tb is
 end;
@@ -20,7 +20,7 @@ architecture reg_tb_arq of reg_tb is
     signal q_dot_tb: std_logic_vector(N_tb-1 downto 0);
     signal q_v_tb: std_logic_vector(N_tb-1 downto 0);
     
-    signal D_tb : matrix := ("0000", "0101", "0110");
+    signal D_tb : matrix(2 downto 0) := ("0000", "0101", "0110");
 begin
     clk_tb <= not clk_tb after 10 ns;
     rst_tb <= '0' after 50 ns;
