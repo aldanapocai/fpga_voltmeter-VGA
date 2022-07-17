@@ -1,6 +1,6 @@
 library IEEE;
 use IEEE.std_logic_1164.all;       
-use work.matrix_type.all;
+use work.utils.all;
 
 entity v_cont_UNOS_tb is
 end;
@@ -11,14 +11,14 @@ architecture v_cont_UNOS_tb_arq of v_cont_UNOS_tb is
 	signal rst_tb : std_logic := '1';
     signal ena_tb : std_logic := '0';
     -- Salidas
-    signal Q_tb : matrix;
+    signal Q_tb : matrix(2 downto 0);
 
     component cont_UNOS is 
     port(
         clk_i:      in std_logic; --Clock sistema
         rst_i:      in std_logic; --Reset sistema
         ena_i:      in std_logic; --Enable sistema
-        Q_o:        out matrix -- 3 contadores BCD de 4 bits cada uno 
+        Q_o:        out matrix(2 downto 0) -- 3 contadores BCD de 4 bits cada uno 
     );
     end component;
 	
