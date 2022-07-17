@@ -16,7 +16,7 @@ architecture reg_tb_arq of reg_tb is
 
     signal q1_tb: std_logic_vector(N_tb-1 downto 0);	
     signal q2_tb: std_logic_vector(N_tb-1 downto 0);	
-    signal q3_tb_tb: std_logic_vector(N_tb-1 downto 0);
+    signal q3_tb: std_logic_vector(N_tb-1 downto 0);
     signal q_dot_tb: std_logic_vector(N_tb-1 downto 0);
     signal q_v_tb: std_logic_vector(N_tb-1 downto 0);
     

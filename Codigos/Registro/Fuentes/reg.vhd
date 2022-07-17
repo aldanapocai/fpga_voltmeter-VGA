@@ -15,7 +15,7 @@ entity reg is
         q_2: out std_logic_vector(N-1 downto 0);
         q_3: out std_logic_vector(N-1 downto 0);
         q_dot: out std_logic_vector(N-1 downto 0);
-        q_v: out std_logic_vector(N-1 downto 0);
+        q_v: out std_logic_vector(N-1 downto 0)
     );
 end;
 
@@ -53,8 +53,8 @@ begin
 
     q_dot <= dot_aux;
     q_v <= v_aux;
-    q_1 <= Q_reg_aux(4);
-    q_2 <= Q_reg_aux(3);
-    q_3 <= Q_reg_aux(2);
+    q_1 <= Q_reg_aux(2);
+    q_2 <= Q_reg_aux(1);
+    q_3 <= Q_reg_aux(0);
 
 end;

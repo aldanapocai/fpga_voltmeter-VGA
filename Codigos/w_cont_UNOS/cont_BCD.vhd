@@ -82,9 +82,6 @@ begin
 
    out_rst <= out_comp or rst_i; -- La cuenta se resetea al llegar a max_cuenta o por sistema
 
-   q_o(3) <= qi_block(3);
-   q_o(2) <= qi_block(2);
-   q_o(1) <= qi_block(1);
-   q_o(0) <= qi_block(0);
-     
+   q_o<= qi_block;
+
 end;
