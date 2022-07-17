@@ -14,14 +14,11 @@ architecture v_cont_UNOS_tb_arq of v_cont_UNOS_tb is
     signal Q_tb : matrix;
 
     component cont_UNOS is 
-    generic(
-        M: natural := 4 -- El cont_UNOS sera implementado con 7 contadores BCDs 
-    );
     port(
         clk_i:      in std_logic; --Clock sistema
         rst_i:      in std_logic; --Reset sistema
         ena_i:      in std_logic; --Enable sistema
-        Q_o:        out matrix -- 4 contadores BCD de 4 bits cada uno 
+        Q_o:        out matrix -- 3 contadores BCD de 4 bits cada uno 
     );
     end component;
 	
