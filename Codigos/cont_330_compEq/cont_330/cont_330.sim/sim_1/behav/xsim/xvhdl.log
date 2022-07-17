@@ -1,8 +1,0 @@
-INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Aldana/Documents/DIGITALES/FINAL/Codigos/cont_330/cont_330.vhd" into library xil_defaultlib
-INFO: [VRFC 10-307] analyzing entity cont_330
-INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Aldana/Documents/DIGITALES/FINAL/Codigos/cont_330/cont_bin_bloque.vhd" into library xil_defaultlib
-INFO: [VRFC 10-307] analyzing entity cont_bin_bloque
-INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Aldana/Documents/DIGITALES/FINAL/Codigos/cont_330/v_ffd.vhd" into library xil_defaultlib
-INFO: [VRFC 10-307] analyzing entity v_ffd
-INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Aldana/Documents/DIGITALES/FINAL/Codigos/cont_330/cont_330_tb.vhd" into library xil_defaultlib
-INFO: [VRFC 10-307] analyzing entity cont_330_tb
