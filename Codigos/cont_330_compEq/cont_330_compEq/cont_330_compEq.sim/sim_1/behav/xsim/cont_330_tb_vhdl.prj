@@ -1,0 +1,10 @@
+# compile vhdl design source files
+vhdl xil_defaultlib  \
+"../../../../../compEq.vhd" \
+"../../../../../cont_330.vhd" \
+"../../../../../cont_bin_bloque.vhd" \
+"../../../../../v_ffd.vhd" \
+"../../../../../cont_330_tb.vhd" \
+
+# Do not sort compile order
+nosort

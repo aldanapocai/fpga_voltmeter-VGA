@@ -1,0 +1,10 @@
+v 3
+file . "reg_gral.vhd" "20220717145920.000" "20220717115943.057":
+  entity reg_gral at 1( 0) + 0 on 25;
+  architecture reg_gral_arq of reg_gral at 17( 329) + 0 on 26;
+file . "reg_gral_tb.vhd" "20220717145032.000" "20220717115947.661":
+  entity reg_gral_tb at 1( 0) + 0 on 27;
+  architecture reg_gral_tb_arq of reg_gral_tb at 7( 78) + 0 on 28;
+file . "v_ffd.vhd" "20220717145458.000" "20220717115955.902":
+  entity ffd at 3( 14) + 0 on 29;
+  architecture ffd_arq of ffd at 17( 285) + 0 on 30;

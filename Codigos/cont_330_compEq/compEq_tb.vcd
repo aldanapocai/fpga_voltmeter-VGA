@@ -1,0 +1,43 @@
+$date
+  Sat Jul 16 16:10:11 2022
+$end
+$version
+  GHDL v0
+$end
+$timescale
+  1 fs
+$end
+$var reg 1 ! s $end
+$var reg 9 " a[8:0] $end
+$var reg 9 # b[8:0] $end
+$scope module dut $end
+$var reg 9 $ a_i[8:0] $end
+$var reg 9 % b_i[8:0] $end
+$var reg 1 & s_o $end
+$var reg 10 ' aux[9:0] $end
+$scope module structure(1) $end
+$upscope $end
+$scope module structure(2) $end
+$upscope $end
+$scope module structure(3) $end
+$upscope $end
+$scope module structure(4) $end
+$upscope $end
+$scope module structure(5) $end
+$upscope $end
+$scope module structure(6) $end
+$upscope $end
+$scope module structure(7) $end
+$upscope $end
+$scope module structure(8) $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+U!
+b101001011 "
+b101001011 #
+b101001011 $
+b101001011 %
+U&
+bUUUUUUUUU1 '

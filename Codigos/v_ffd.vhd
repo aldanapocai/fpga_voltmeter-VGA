@@ -1,5 +1,4 @@
---flipflop (D FF with synchronous ena_ible: Note that the en signal is examined only at the rising edge of the clock
---and thus is synchronous. If it is not asserted, the FF keeps its previous value)
+--flipflop
 
 library IEEE;
 use IEEE.std_logic_1164.all;
