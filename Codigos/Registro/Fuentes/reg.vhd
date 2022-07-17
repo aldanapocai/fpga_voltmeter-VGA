@@ -40,7 +40,7 @@ architecture reg_arq of reg is
 
 begin
 
-    registro: for i in 0 to N generate
+    registro: for i in 0 to 2 generate
         regs_gral: reg_gral
             port map(
                 clk_i => clk_i,
