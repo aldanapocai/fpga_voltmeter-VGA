@@ -52,10 +52,7 @@ begin
     end generate cont_BCD_bloques;
     
     
-	Q_o(4) <= Q_o_bcds(4);
-	Q_o(3) <= Q_o_bcds(3);
-	Q_o(2) <= Q_o_bcds(2);
-	Q_o(1) <= Q_o_bcds(1);
-	Q_o(0) <= Q_o_bcds(0);
+	Q_o <= Q_o_bcds;
+
 
 end;
