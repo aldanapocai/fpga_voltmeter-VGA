@@ -7,7 +7,7 @@ use work.utils.all;
 
 entity mem_rom is 
     port(
-        char: in std_logic_vector(3 downto 0);
+        char: in std_logic_vector(3 downto 0); --Recibido del MUX
         font_col, font_row: in std_logic_vector(9 downto 0); --Posiciones del caracter 
         rom_out: out std_logic
     );
