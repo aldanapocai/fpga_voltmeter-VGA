@@ -1,3 +1,5 @@
+--Tamaño de la memoria ROM CGA: 128x8 bits (128 lineas)
+
 library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
@@ -6,7 +8,7 @@ use work.utils.all;
 entity mem_rom is 
     port(
         char: in std_logic_vector(3 downto 0);
-        font_x, fort_y: in std_logic_vector(9 downto 0);
+        font_col, font_row: in std_logic_vector(9 downto 0); --Posiciones del caracter 
         rom_out: out std_logic
     );
 end;
@@ -155,16 +157,16 @@ architecture mem_rom_arq of mem_rom is
     signal char_out: std_logic; --Char de salida 
 
 begin
-    pos_h <= font_x(6) & font_x(5) & font_x(4);
-    pos_v <= font_y(6) & font_y(5) & font_x(4);
+    pos_h <= font_col(6) & font_col(5) & font_col(4);
+    pos_v <= font_row(6) & font_row(5) & font_row(4);
 
     aux_char <= to_integer(unsigned(char));
     h_ind <= to_integer(unsigned(pos_h));
     v_ind <= to_integer(unsigned(pos_v));
 
-    v_flag <= (not font_y(9)) and (not font_y(8)) and font_y(7);
+    v_flag <= (not font_row(9)) and (not font_row(8)) and font_row(7); --Condicion de habilitacion: 001
 
-    char_out <= ROM(aux_char)(v_ind)(h_ind);
+    char_out <= ROM(aux_char)(v_ind)(h_ind); --Concatenado de la salida
 
     selector: entity work.mux_base
         port map(
