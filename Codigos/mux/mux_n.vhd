@@ -44,7 +44,9 @@ begin
     char_in(4) <= d_v_i;
 
 
-    aaa: for i in 0 to N-1 generate 
-        sal_o(i) <= (ent_i(i+N) and sel_i) or (ent_i(i and (not sel_i)));
+    chars_out: for i in 0 to N generate 
+        char_out(i) <= (char_in(i)(3) and selec_pant(i)) & (char_in(i)(2) and selec_pant(i)) & (char_in(i)(0) and selec_pant(i));
     end generate;
+
+    sal_o <= char_out(4) or char_out(3) or char_out(2) or char_out(1) or char_out(0);
 end;
