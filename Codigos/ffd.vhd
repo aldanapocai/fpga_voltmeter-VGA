@@ -4,7 +4,7 @@ library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.std_logic_unsigned.all;
 
-entity v_ffd is
+entity ffd is
     port(
         clk_i: in std_logic;
         rst_i: in std_logic;
@@ -14,7 +14,7 @@ entity v_ffd is
     );
 end;
 
-architecture v_ffd_arq of v_ffd is
+architecture ffd_arq of ffd is
     begin
         process(clk_i, rst_i) --escucha por cambios en clk_i, si no hay cambios se mantiene en el anterior (esos cambios pueden ser flancos ascendentes como descendentes)
             begin
