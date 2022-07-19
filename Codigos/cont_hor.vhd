@@ -43,13 +43,14 @@ architecture cont_hor_arq of cont_hor is
                     Q_o     => Qi_aux(i),
                     ACU_o   => ACU_aux(i)
                 );
-            Di_aux(i)  <= ACU_aux(i);
+            Di_aux(i)  <= ACU_aux(i-1);
         end generate;
 
         out_comp <= Qi_aux(9) and Qi_aux(8) and not Qi_aux(7) and not Qi_aux(6) and Qi_aux(5) and not Qi_aux(4) and not Qi_aux(3) and not Qi_aux(2) and not Qi_aux(1) and Qi_aux(0); --801 "1100100001" para que se resetee cont_hor
         rst_aux  <= rst_i or out_comp;
 
+        --Asigno salidas
         Q_ena_o  <= Qi_aux(9) and Qi_aux(8) and not Qi_aux(7) and not Qi_aux(6) and Qi_aux(5) and not Qi_aux(4) and not Qi_aux(3) and not Qi_aux(2) and not Qi_aux(1) and not Qi_aux(0);--max cuenta = 800 "1100100000"
 
-        Q_o      <= Q_i_aux;
+        Q_o      <= Qi_aux;
 end;
