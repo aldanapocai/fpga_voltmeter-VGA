@@ -9,7 +9,7 @@ entity cont_vert is
 		clk_i: in std_logic;		-- Clock del sistema
 		ena_i: in std_logic;		-- Enable del sistema	
 		rst_i: in std_logic;
-		Q_o: out std_logic_vector(9 downto 0);
+		Q_o: out std_logic_vector(N-1 downto 0);
 		v_rst: out std_logic
 	);
 end cont_vert;

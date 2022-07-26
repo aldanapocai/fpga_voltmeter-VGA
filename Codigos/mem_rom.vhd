@@ -8,7 +8,7 @@ use work.utils.all;
 entity mem_rom is 
     port(
         char: in std_logic_vector(3 downto 0); --Recibido del MUX
-        font_col, font_row: in std_logic_vector(9 downto 0); --Posiciones del caracter 
+        pos_col, pos_row: in std_logic_vector(9 downto 0); --Posiciones del caracter 
         rom_out: out std_logic
     );
 end;
@@ -157,14 +157,14 @@ architecture mem_rom_arq of mem_rom is
     signal char_out: std_logic; --Char de salida 
 
 begin
-    pos_h <= font_col(6) & font_col(5) & font_col(4);
-    pos_v <= font_row(6) & font_row(5) & font_row(4);
+    pos_h <= pos_col(6) & pos_col(5) & pos_col(4);
+    pos_v <= pos_row(6) & pos_row(5) & pos_row(4);
 
     aux_char <= to_integer(unsigned(char));
     h_ind <= to_integer(unsigned(pos_h));
     v_ind <= to_integer(unsigned(pos_v));
 
-    v_flag <= (not font_row(9)) and (not font_row(8)) and font_row(7); --Condicion de habilitacion: 001
+    v_flag <= (not pos_row(9)) and (not pos_row(8)) and pos_row(7); --Condicion de habilitacion: 001
 
     char_out <= ROM(aux_char)(v_ind)(h_ind); --Concatenado de la salida
 

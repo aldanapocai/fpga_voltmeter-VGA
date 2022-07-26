@@ -7,7 +7,6 @@ entity mux_base is
         mux_y:   in std_logic;
         mux_sel: in std_logic;
         mux_out: out std_logic
-
     ); 
 end;
 
