@@ -10,8 +10,9 @@ entity ffd_adc is
         rst_i: in std_logic;
         ena_i: in std_logic;
         D_i: in std_logic;
-        Q_o: out std_logic;
-        Q_n: out std_logic
+        --Q_n: out std_logic;
+        Q_o: out std_logic
+
     );
 end;
 
