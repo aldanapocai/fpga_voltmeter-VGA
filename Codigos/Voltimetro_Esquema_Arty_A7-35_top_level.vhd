@@ -121,13 +121,13 @@ begin
 		port map(
             clk_i			=> clk50MHz,
             rst_i			=> rst_i,
-            data_volt_in_i	=> data_volt_in_i,
-            data_volt_out_o	=> data_volt_out_o,
-            hs_o			=> hs_o,
-            vs_o			=> vs_o,
-            red_o			=> red_o,
-            grn_o			=> grn_o,
-            blu_o			=> blu_o
+            ent_unos		> data_volt_in_i,
+            sal_unos		=> data_volt_out_o,
+            hsync			=> hs_o,
+            vsync			=> vs_o,
+            red_out			=> red_o,
+            grn_out			=> grn_o,
+            blu_out			=> blu_o
         );
 
     ------------------------------------------------------------------------------

@@ -23,13 +23,13 @@ architecture cont_BCD_arq of cont_BCD is
     signal out_comp: std_logic; --Salida del comparador, entra a la compuerta OR que resulta en la señal out_rst
     
 
-    component v_ffd
+    component ffd
         port(
-            clk: in std_logic;
-            rst: in std_logic;
-            ena: in std_logic;
-            D: in std_logic;
-            Q: out std_logic
+            clk_i: in std_logic;
+            rst_i: in std_logic;
+            ena_i: in std_logic;
+            D_i: in std_logic;
+            Q_o: out std_logic
         );
     end component;
 
@@ -47,13 +47,13 @@ architecture cont_BCD_arq of cont_BCD is
 begin
 
     --Instancio primer ffd (0), el unico con conexiones distintas al resto
-    ffd0: v_ffd
+    ffd0: ffd
     port map(
-        clk  => clk_i, --Clock sistema
-        rst   => out_rst, --Reset contador (reset sistema or reset max_cuenta)
-        ena   => ena_i, --Enable sistema
-        D     => and_i_block(0), --En el ffd0 en realidad es Q0 negado
-        Q     => qi_block(0)
+        clk_i  => clk_i, --Clock sistema
+        rst_i   => out_rst, --Reset contador (reset sistema or reset max_cuenta)
+        ena_i   => ena_i, --Enable sistema
+        D_i     => and_i_block(0), --En el ffd0 en realidad es Q0 negado
+        Q_o     => qi_block(0)
     );
 
     and_i_block(0) <= not qi_block(0);
