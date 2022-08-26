@@ -212,7 +212,7 @@ architecture voltimetro_arq of voltimetro is
             clk_i => clk_aux,
             rst_i => rst_aux,
             ena_i => '1',
-            q_o => q_tb,
+            --q_o => q_tb,--no se usa
             q_ena_o => Q_ENA_aux,
             q_rst_o => Q_RST_aux
         );
@@ -227,19 +227,19 @@ architecture voltimetro_arq of voltimetro is
         ena_i => Q_ADC_aux, --Cuenta los unos que le ingresan desde ADC
         Q_o   => Q_cont_aux
       );
- 
-   i_REGISTRO: reg  
-    port map(
-        clk_i     => clk_aux,
-        rst_i     => rst_aux,
-        ena_i     => Q_ENA_aux,
-        D_i       => Q_cont_aux,
-        q_1       => D1_aux_temp,
-        q_2       => D2_aux_temp,
-        q_3       => D3_aux_temp,
-        q_dot     => point_aux, 
-        q_v       => V_aux
-    );
+
+    i_REGISTRO: reg  
+      port map(
+          clk_i     => clk_aux,
+          rst_i     => rst_aux,
+          ena_i     => Q_ENA_aux,
+          D_i       => Q_cont_aux,
+          q_1       => D1_aux_temp,
+          q_2       => D2_aux_temp,
+          q_3       => D3_aux_temp,
+          q_dot     => point_aux, 
+          q_v       => V_aux
+      );
 
     i_reg_q1: reg_gral
       port map(
@@ -292,23 +292,23 @@ architecture voltimetro_arq of voltimetro is
      red_aux <= rom_out_aux and '0';
      grn_aux <= rom_out_aux and '1';
      blu_aux <= rom_out_aux and '1';
-
-     i_VGA: VGA_unit
-      port(
-        clk_i   => clk_VGA,
-        rst_i   => rst_aux,
-        ena_i   => '1',
-        red_i   => red_aux,
-        grn_i   => grn_aux,
-        blu_i   => blu_aux,
-        sinh_o  => hs_VGA,
-        sinv_o  => vs_VGA,
-        red_o   => red_VGA,
-        grn_o   => grn_VGA,
-        blu_o   => blu_VGA,
-        pos_h   => pos_h_aux,
-        pos_v   => pos_v_aux,
-        ena_reg => v_ena_reg_aux
-    );
+     
+    i_VGA: VGA_unit
+     port(
+       clk_i   => clk_VGA,
+       rst_i   => rst_aux,
+       ena_i   => '1',
+       red_i   => red_aux,
+       grn_i   => grn_aux,
+       blu_i   => blu_aux,
+       sinh_o  => hsync,
+       sinv_o  => vsync,
+       red_o   => red_out,
+       grn_o   => grn_out,
+       blu_o   => blu_out,
+       pos_h   => pos_h_aux,
+       pos_v   => pos_v_aux,
+       ena_reg => v_ena_reg_aux
+   );
  
   end voltimetro;
