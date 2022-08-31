@@ -72,7 +72,7 @@ architecture voltimetro_arq of voltimetro is
       port(
         clk_i: in std_logic;
         rst_i: in std_logic;
-        ena_i: in std_logic;|
+        ena_i: in std_logic;
         D_i: in std_logic; --Voltaje positivo de entrada
         --Qn_o: out std_logic; --Voltaje negativo de salida ?
         Q_ADC: out std_logic --Salida del modulo
@@ -163,7 +163,7 @@ architecture voltimetro_arq of voltimetro is
 
 
   component VGA_unit is
-    general(
+    generic(
         N: natural:= 10 
     );
     port(
@@ -192,6 +192,7 @@ architecture voltimetro_arq of voltimetro is
     i_div_freq: clck_VGA
     port map(
       clk_i => clk,
+      ena_i => '1',
       rst_i => rst_aux,
       clk_o => clk_VGA
     );
@@ -294,7 +295,7 @@ architecture voltimetro_arq of voltimetro is
      blu_aux <= rom_out_aux and '1';
      
     i_VGA: VGA_unit
-     port(
+     port map(
        clk_i   => clk_VGA,
        rst_i   => rst_aux,
        ena_i   => '1',
@@ -311,4 +312,4 @@ architecture voltimetro_arq of voltimetro is
        ena_reg => v_ena_reg_aux
    );
  
-  end voltimetro;
+end;

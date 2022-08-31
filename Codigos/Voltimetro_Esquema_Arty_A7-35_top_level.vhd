@@ -22,7 +22,7 @@ entity Voltimetro_toplevel is
 		grn_o 			: out std_logic;
         blu_o 			: out std_logic;
         pwm_out			: out std_logic;
-		led				: out std_logic
+		led_o				: out std_logic
 	);
 	
 	-- Mapeo de pines para el kit Arty A7-35

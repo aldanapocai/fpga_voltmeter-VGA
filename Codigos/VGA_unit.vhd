@@ -5,7 +5,7 @@ use IEEE.numeric_std.all;
 --Unidad controladora de VGA
 
 entity VGA_unit is
-    general(
+    generic(
         N: natural:= 10 
     );
     port(
@@ -100,7 +100,7 @@ architecture VGA_unit_arq of VGA_unit is
                 clk_i    => clk_i,
                 ena_i    => ena_v,
                 rst_i    => rst_i,
-                Q_o:     => vc, --cuenta vertical
+                Q_o     => vc, --cuenta vertical
                 v_rst    => ena_reg --ultima linea pantalla
             );
     --los pulsos de sincronimos estan determinads por una cuenta horizontal menor a 97 y una  cuenta vertical menor a 3 
