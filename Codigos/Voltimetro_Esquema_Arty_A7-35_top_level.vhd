@@ -80,14 +80,14 @@ architecture Voltimetro_toplevel_arq of Voltimetro_toplevel is
 	end component Voltimetro;
 	
 	-- Declaracion del compoente generador de reloj (MMCM - Mixed Mode Clock Manager)
-	component clk_generator
-		port (
-			-- Clock in ports
-			clk_in1: in std_logic;
-	  		-- Clock out ports
-	  		clk_out1: out std_logic
+	component clk_wiz_0
+	port
+	 (-- Clock in ports
+	  -- Clock out ports
+	  clk_out1          : out    std_logic;
+	  clk_in1           : in     std_logic
 	 );
-    end component;
+	end component;
     
     component dac_pwm is
 		generic (
@@ -106,22 +106,25 @@ architecture Voltimetro_toplevel_arq of Voltimetro_toplevel is
 	signal clk50MHz	: std_logic;
 	signal pwm_in	: std_logic_vector(Nb-1 downto 0);
 	signal pwm_out_s: std_logic;
+	signal rst_s 	: std_logic;
 	
 begin
 
 	-- Generador del reloj lento
-	clk50MHz_gen : clk_generator
-   		port map ( 
-   			clk_in1		=> clk_i,		-- reloj del sistema (100 MHz)
-   			clk_out1	=> clk50MHz		-- reloj generado (50 MHz)
- 		);
+	clk50MHz_gen : clk_wiz_0
+		 port map ( 
+		-- Clock out ports  
+		 clk_out1 => clk50MHz,
+		 -- Clock in ports
+		 clk_in1 => clk_i
+		);
 
 	-- Instancia del bloque voltimetro
 	inst_voltimetro: Voltimetro
 		port map(
-            clk_i			=> clk50MHz,
-            rst_i			=> rst_i,
-            ent_unos		> data_volt_in_i,
+            clk				=> clk50MHz,
+            rst				=> rst_i,
+            ent_unos		=> data_volt_in_i,
             sal_unos		=> data_volt_out_o,
             hsync			=> hs_o,
             vsync			=> vs_o,
@@ -165,6 +168,6 @@ begin
  		);
  	
  	pwm_out	<= pwm_out_s;
- 	led		<= pwm_out_s;
+ 	led_o		<= pwm_out_s;
 
 end Voltimetro_toplevel_arq;
