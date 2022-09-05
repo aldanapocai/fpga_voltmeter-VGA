@@ -9,8 +9,8 @@ entity ADC is
         rst_i: in std_logic;
         ena_i: in std_logic;
         D_i: in std_logic; --Voltaje positivo de entrada
-        --Qn_o: out std_logic; --Voltaje negativo de salida ?
-        Q_ADC: out std_logic --Salida del modulo
+        Qn_o: out std_logic; --Voltaje negativo de salida ?
+        Q_ADC: out std_logic --Salida del modulo, positivo
     );
 end;
 
@@ -23,7 +23,7 @@ architecture ADC_arq of ADC is
                 rst_i     => rst_i,
                 ena_i     => ena_i,
                 D_i       => D_i,
-                --Q_n       => Qn_o, --?
+                Q_n       => Qn_o, --?
                 Q_o       => Q_ADC
 
             );

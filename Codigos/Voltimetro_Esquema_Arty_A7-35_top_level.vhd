@@ -125,6 +125,7 @@ begin
             clk				=> clk50MHz,
             rst				=> rst_i,
             ent_unos		=> data_volt_in_i,
+            --ent_unos		=> '1', --ruido en el bit menos significativo
             sal_unos		=> data_volt_out_o,
             hsync			=> hs_o,
             vsync			=> vs_o,

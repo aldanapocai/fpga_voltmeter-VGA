@@ -10,7 +10,7 @@ entity ffd_adc is
         rst_i: in std_logic;
         ena_i: in std_logic;
         D_i: in std_logic;
-        --Q_n: out std_logic;
+        Q_n: out std_logic;
         Q_o: out std_logic
 
     );
@@ -22,9 +22,11 @@ architecture ffd_adc_arq of ffd_adc is
             begin
             if rst_i = '1' then  
             Q_o <= '0';
+            Q_n <= '1';
             elsif rising_edge(clk_i) then 
                 if ena_i = '1' then 
                 Q_o <= D_i; 
+                Q_n <= not D_i;
             end if;
         end if;
     end process;

@@ -35,7 +35,7 @@ architecture voltimetro_arq of voltimetro is
   signal Q_RST_aux: std_logic;
 
   signal rst_cont: std_logic;
-  signal Q_cont_aux: matrix(4 downto 0);
+  signal Q_cont_aux: matrix(2 downto 0);
 
   signal D1_aux_temp: std_logic_vector(3 downto 0);
   signal D2_aux_temp: std_logic_vector(3 downto 0);
@@ -58,6 +58,19 @@ architecture voltimetro_arq of voltimetro is
   signal grn_aux: std_logic;
   signal blu_aux: std_logic;
 
+  constant test_aux: matrix(2 downto 0):= (("0001"),("0010"), ("0100"));
+
+  component ffd_adc is
+    port(
+        clk_i: in std_logic;
+        rst_i: in std_logic;
+        ena_i: in std_logic;
+        D_i: in std_logic;
+        Q_n: out std_logic;
+        Q_o: out std_logic
+
+    );
+  end component; 
 
   component clck_VGA
       port(
@@ -82,7 +95,7 @@ architecture voltimetro_arq of voltimetro is
     
   component cont_330
       generic(
-        M: natural := 9
+        M: natural := 16
       );
       port(
         clk_i:      in std_logic; --Clock sistema
@@ -100,7 +113,7 @@ architecture voltimetro_arq of voltimetro is
         clk_i:      in std_logic; --Clock sistema
         rst_i:      in std_logic; --Reset sistema
         ena_i:      in std_logic; --Enable sistema
-        Q_o:        out matrix(4 downto 0) --  5 contadores BCD de 4 bits cada uno 
+        Q_o:        out matrix(2 downto 0) --  3 contadores BCD de 4 bits cada uno 
     );
   end component;
 
@@ -197,16 +210,26 @@ architecture voltimetro_arq of voltimetro is
       clk_o => clk_VGA
     );
 
-    i_ADC: ADC
-    port map(
-      clk_i => clk_aux,
-      rst_i => rst_aux,
-      ena_i => '1',
-      D_i => ent_unos, 
-      Q_ADC => Q_ADC_aux
-    );
+    -- i_ADC: ADC
+    -- port map(
+    --   clk_i => clk_aux,
+    --   rst_i => rst_aux,
+    --   ena_i => '1',
+    --   D_i => ent_unos, 
+    --   Q_ADC => Q_ADC_aux
+    -- );
 
-    sal_unos <=  Q_ADC_aux;
+    i_ADC: ffd_adc
+      port map(
+        clk_i => clk_aux,
+        rst_i => rst_aux,
+        ena_i => '1',
+        D_i => ent_unos, 
+        Q_n => sal_unos,
+        Q_o => Q_ADC_aux
+      );
+
+    --sal_unos <=  Q_ADC_aux; no estoy sacando el negado
 
     i_cont_330 : cont_330
         port map(
@@ -214,8 +237,8 @@ architecture voltimetro_arq of voltimetro is
             rst_i => rst_aux,
             ena_i => '1',
             --q_o => q_tb,--no se usa
-            q_ena_o => Q_ENA_aux,
-            q_rst_o => Q_RST_aux
+            q_ena_o => Q_ENA_aux,--al reg
+            q_rst_o => Q_RST_aux --cont UNOS
         );
 
 -- Mapeo del reset del contador UNOS, se puede utilizar el reset general o cuando el cont_33000 termina.
@@ -226,6 +249,7 @@ architecture voltimetro_arq of voltimetro is
         clk_i => clk_aux, 
         rst_i => rst_cont,
         ena_i => Q_ADC_aux, --Cuenta los unos que le ingresan desde ADC
+        --ena_i => '1', --no cambia nada
         Q_o   => Q_cont_aux
       );
 
@@ -235,6 +259,7 @@ architecture voltimetro_arq of voltimetro is
           rst_i     => rst_aux,
           ena_i     => Q_ENA_aux,
           D_i       => Q_cont_aux,
+          --D_i       => test_aux, --con este funciono
           q_1       => D1_aux_temp,
           q_2       => D2_aux_temp,
           q_3       => D3_aux_temp,

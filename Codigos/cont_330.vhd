@@ -1,23 +1,23 @@
 library IEEE;
 use IEEE.std_logic_1164.all;
 
-
+--cuenta hasta 33.000 (1000000011101000 )
 entity cont_330 is 
     generic(
-        M: natural := 9
+        M: natural := 16
     );
     port(
         clk_i:      in std_logic; --Clock sistema
         rst_i:      in std_logic; --Reset sistema
         ena_i:      in std_logic; --Enable sistema
-        q_o:        out std_logic_vector(M-1 downto 0);--Cuenta
+        q_o:        out std_logic_vector(15 downto 0);--Cuenta
         q_ena_o:    out std_logic; --Avisa cuando pasar la cuenta del contador de 1s al registro, cuenta=330
         q_rst_o:    out std_logic --Avisa cuando resetear el contador binario, cuenta=331
     );
 end;
 
 architecture cont_330_arq of cont_330 is
-    signal and_i_block, qi_block, ACU_block: std_logic_vector(M-1 downto 0); -- Conexiones internas de los bloques del contador
+    signal and_i_block, qi_block, ACU_block: std_logic_vector(15 downto 0); -- Conexiones internas de los bloques del contador
     signal out_rst: std_logic; --Salida del reset que entra al contador, sale de un OR (sistema o max_cuenta)
     signal out_comp: std_logic; --Salida del comparador, entra a la compuerta OR que resulta en la señal out_rst
     
@@ -78,22 +78,17 @@ begin
 
  --COMPARADOR: comparo de forma logica: decodificando el valor de max_cuenta
         --          1                   0             1                 0                   0               1                   0           1               1
-    out_comp <= qi_block(8) and not qi_block(7) and qi_block(6) and not qi_block(5) and not qi_block(4) and qi_block(3) and not qi_block(2) and qi_block(1) and qi_block(0); --max_cuenta '101001011' = 331
+    -- out_comp <= qi_block(8) and not qi_block(7) and qi_block(6) and not qi_block(5) and not qi_block(4) and qi_block(3) and not qi_block(2) and qi_block(1) and qi_block(0); --max_cuenta '101001011' = 331
 
-    --          1                   0             1                 0                   0               1                   0               1                    0
-    q_ena_o <= qi_block(8) and not qi_block(7) and qi_block(6) and not qi_block(5) and not qi_block(4) and qi_block(3) and not qi_block(2) and qi_block(1) and not qi_block(0); --max_cuenta '101001010' = 330
-
-    --COMPARADOR usando componente externo
-    -- compEqinst:  entity work.compEq
-    --     generic map(
-    --         N => M
-    --     )
-    --     port map (
-    --         a_i => qi_block,
-    --         b_i => "101001011", 
-    --         s_o => out_comp
-    --     );
+    -- --          1                   0             1                 0                   0               1                   0               1                    0
+    -- q_ena_o <= qi_block(8) and not qi_block(7) and qi_block(6) and not qi_block(5) and not qi_block(4) and qi_block(3) and not qi_block(2) and qi_block(1) and not qi_block(0); --max_cuenta '101001010' = 330
     
+    
+    out_comp <= qi_block(15) and not qi_block(14) and not qi_block(13) and not qi_block(12) and not qi_block(11) and not qi_block(10) and not qi_block(9)  and not qi_block(8) and qi_block(7) and qi_block(6) and qi_block(5) and not qi_block(4) and qi_block(3) and not qi_block(2) and not qi_block(1) and qi_block(0); --max_cuenta '1000000011101001' = 33001 
+
+   
+    q_ena_o <= qi_block(15) and not qi_block(14) and not qi_block(13) and not qi_block(12) and not qi_block(11) and not qi_block(10) and not qi_block(9)  and not qi_block(8) and qi_block(7) and qi_block(6) and qi_block(5) and not qi_block(4) and qi_block(3) and not qi_block(2) and not qi_block(1) and not qi_block(0); --max_cuenta '1000000011101000 ' = 33000
+
     
     q_rst_o <= out_comp; --Avisa cuando resetear el contador binario (afuera), cuenta=331
 
