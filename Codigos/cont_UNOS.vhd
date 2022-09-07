@@ -8,7 +8,7 @@ entity cont_UNOS is
         clk_i:      in std_logic; --Clock sistema
         rst_i:      in std_logic; --Reset sistema
         ena_i:      in std_logic; --Enable sistema
-        Q_o:        out matrix(2 downto 0) --  3 contadores BCD de 4 bits cada uno 
+        Q_o:        out matrix(2 downto 0) --  Salida 3x4 bits cada uno 
     );
 end;
 

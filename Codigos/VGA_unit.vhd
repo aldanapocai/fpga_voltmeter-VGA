@@ -114,7 +114,7 @@ architecture VGA_unit_arq of VGA_unit is
             ((vc(9) or vc(8) or vc(7) or vc(6) or vc(5))	-- vbp < vc
                 and (not vc(9) and not (vc(8) and vc(7) and vc(6) and vc(5) and vc(4) and vc(3) and vc(2) and vc(1) and vc(0))));	-- vc < vfp
 
-    --Salidas por pantalla solo cuando existe entrada y se esta en la posicion de la pantalla viaible
+    --Salidas por pantalla solo cuando existe entrada y se esta en la posicion de la pantalla visible
     red_o <= red_i and vidon;									
     grn_o <= grn_i and vidon; 
     blu_o <= blu_i and vidon;	

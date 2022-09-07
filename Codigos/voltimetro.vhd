@@ -250,7 +250,6 @@ architecture voltimetro_arq of voltimetro is
           rst_i     => rst_aux,
           ena_i     => Q_ENA_aux,
           D_i       => Q_cont_aux,
-          --D_i       => test_aux, --con este funciono
           q_1       => D1_aux_temp,
           q_2       => D2_aux_temp,
           q_3       => D3_aux_temp,

@@ -1,4 +1,4 @@
---Tamaño de la memoria ROM CGA: 128x8 bits (128 lineas)
+--Tamaño de la memoria ROM: 128x8 bits (128 lineas)
 
 library IEEE;
 use IEEE.std_logic_1164.all;
