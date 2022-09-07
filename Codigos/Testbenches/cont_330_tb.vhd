@@ -5,7 +5,7 @@ entity cont_330_tb is
 end;
 
 architecture cont_330_tb_arq of cont_330_tb is
-    constant N_tb: natural := 9;
+    constant N_tb: natural := 16;
     signal clk_tb: std_logic := '0';
     signal rst_tb: std_logic := '1';
     signal ena_tb: std_logic := '1';
@@ -15,7 +15,7 @@ architecture cont_330_tb_arq of cont_330_tb is
 
     component cont_330 is 
         generic(
-            M: natural := 9
+            M: natural := 16
         );
     
         port(

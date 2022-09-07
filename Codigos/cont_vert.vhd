@@ -10,7 +10,7 @@ entity cont_vert is
 		ena_i: in std_logic;		-- Enable del sistema	
 		rst_i: in std_logic;
 		Q_o: out std_logic_vector(N-1 downto 0);
-		v_rst: out std_logic
+		v_rst: out std_logic --Avisa a los registros que se pueden habilitar para recibir un nuevo valor
 	);
 end cont_vert;
 

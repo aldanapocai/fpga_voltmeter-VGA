@@ -11,7 +11,7 @@ entity VGA_unit is
     port(
         clk_i: in std_logic;
         rst_i: in std_logic;
-        ena_i: in std_logic; --Se usa?
+        ena_i: in std_logic; 
         red_i: in std_logic;
         grn_i: in std_logic;
         blu_i: in std_logic;

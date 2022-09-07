@@ -10,14 +10,14 @@ entity cont_330 is
         clk_i:      in std_logic; --Clock sistema
         rst_i:      in std_logic; --Reset sistema
         ena_i:      in std_logic; --Enable sistema
-        q_o:        out std_logic_vector(15 downto 0);--Cuenta
+        q_o:        out std_logic_vector(M-1 downto 0);--Cuenta
         q_ena_o:    out std_logic; --Avisa cuando pasar la cuenta del contador de 1s al registro, cuenta=330
         q_rst_o:    out std_logic --Avisa cuando resetear el contador binario, cuenta=331
     );
 end;
 
 architecture cont_330_arq of cont_330 is
-    signal and_i_block, qi_block, ACU_block: std_logic_vector(15 downto 0); -- Conexiones internas de los bloques del contador
+    signal and_i_block, qi_block, ACU_block: std_logic_vector(M-1 downto 0); -- Conexiones internas de los bloques del contador
     signal out_rst: std_logic; --Salida del reset que entra al contador, sale de un OR (sistema o max_cuenta)
     signal out_comp: std_logic; --Salida del comparador, entra a la compuerta OR que resulta en la señal out_rst
     

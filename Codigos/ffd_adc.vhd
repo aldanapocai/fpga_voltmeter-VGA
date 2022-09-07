@@ -1,4 +1,4 @@
---flipflop
+--Estructura al inicio que almacena en un ffd los valores del voltaje en tiempo real
 
 library IEEE;
 use IEEE.std_logic_1164.all;

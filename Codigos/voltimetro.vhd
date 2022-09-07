@@ -58,7 +58,7 @@ architecture voltimetro_arq of voltimetro is
   signal grn_aux: std_logic;
   signal blu_aux: std_logic;
 
-  constant test_aux: matrix(2 downto 0):= (("0001"),("0010"), ("0100"));
+  --constant test_aux: matrix(2 downto 0):= (("0001"),("0010"), ("0100")); --para hacer prueba
 
   component ffd_adc is
     port(
@@ -182,7 +182,7 @@ architecture voltimetro_arq of voltimetro is
     port(
         clk_i: in std_logic;
         rst_i: in std_logic;
-        ena_i: in std_logic; --Se usa?
+        ena_i: in std_logic; 
         red_i: in std_logic;
         grn_i: in std_logic;
         blu_i: in std_logic;
@@ -210,26 +210,17 @@ architecture voltimetro_arq of voltimetro is
       clk_o => clk_VGA
     );
 
-    -- i_ADC: ADC
-    -- port map(
-    --   clk_i => clk_aux,
-    --   rst_i => rst_aux,
-    --   ena_i => '1',
-    --   D_i => ent_unos, 
-    --   Q_ADC => Q_ADC_aux
-    -- );
 
-    i_ADC: ffd_adc
+    i_ffd_adc: ffd_adc
       port map(
         clk_i => clk_aux,
         rst_i => rst_aux,
         ena_i => '1',
         D_i => ent_unos, 
-        Q_n => sal_unos,
+        Q_n => sal_unos, --Saco el negado 
         Q_o => Q_ADC_aux
       );
 
-    --sal_unos <=  Q_ADC_aux; no estoy sacando el negado
 
     i_cont_330 : cont_330
         port map(
@@ -248,7 +239,7 @@ architecture voltimetro_arq of voltimetro is
       port map(
         clk_i => clk_aux, 
         rst_i => rst_cont,
-        ena_i => Q_ADC_aux, --Cuenta los unos que le ingresan desde ADC
+        ena_i => Q_ADC_aux, --Cuenta los unos que le ingresan desde el ffd en la entrada del voltimetro
         --ena_i => '1', --no cambia nada
         Q_o   => Q_cont_aux
       );
@@ -331,10 +322,10 @@ architecture voltimetro_arq of voltimetro is
        sinv_o  => vsync,
        red_o   => red_out,
        grn_o   => grn_out,
-       blu_o   => blu_out,
-       pos_h   => pos_h_aux,
-       pos_v   => pos_v_aux,
-       ena_reg => v_ena_reg_aux
+       blu_o   => blu_out, 
+       pos_h   => pos_h_aux, --Avisa posicion horizontal en pantalla
+       pos_v   => pos_v_aux, --Avisa posicion vertical en pantalla
+       ena_reg => v_ena_reg_aux --El cont vertical llega a max cuenta, avisa a los registros que se pueden habilitar para recibir un nuevo valor
    );
  
 end;
