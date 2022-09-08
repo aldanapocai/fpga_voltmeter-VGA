@@ -81,17 +81,6 @@ architecture voltimetro_arq of voltimetro is
       );
   end component;
 
-  component ADC
-      port(
-        clk_i: in std_logic;
-        rst_i: in std_logic;
-        ena_i: in std_logic;
-        D_i: in std_logic; --Voltaje positivo de entrada
-        --Qn_o: out std_logic; --Voltaje negativo de salida ?
-        Q_ADC: out std_logic --Salida del modulo
-      );
-  end component;
-
     
   component cont_330
       generic(
